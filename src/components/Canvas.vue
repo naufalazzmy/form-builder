@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-sm text-gray-500">Column Control: {{ element.columns.length }} columns</p>
+                        <p class="text-sm text-gray-500">{{ element.columns.length }} columns</p>
                     </div>
 
                     <!-- RENDER INPUT FIELD -->

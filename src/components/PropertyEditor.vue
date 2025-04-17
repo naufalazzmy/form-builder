@@ -105,7 +105,8 @@ function addFieldToColumn(colIndex) {
         id: Date.now().toString(),
         label: 'Label',
         name: 'fieldName',
-        inputType: 'text'
+        inputType: 'text',
+        type: "input",
     }
 
     el.columns[colIndex].push(newField)

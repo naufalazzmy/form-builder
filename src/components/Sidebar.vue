@@ -26,7 +26,7 @@ function dragInputField(event) {
 function dragColumnControl(event) {
     const columnElement = {
         type: 'columnControl',
-        label: 'Row dengan Kolom',
+        label: 'Column',
         columnCount: 2 // Default 2 kolom
     }
     event.dataTransfer.setData('application/json', JSON.stringify(columnElement))
