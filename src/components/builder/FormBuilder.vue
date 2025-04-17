@@ -16,6 +16,6 @@
 
 <script setup>
 import ComponentPanel from './ComponentPanel.vue'
-import Canvas from './Canvas.vue'
-import PropertyEditor from './PropertyEditor.vue'
+import Canvas from '../Canvas.vue'
+import PropertyEditor from '../PropertyEditor.vue'
 </script>

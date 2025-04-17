@@ -1,31 +1,37 @@
-// src/stores/builder.js
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useBuilderStore = defineStore("builder", () => {
-  const elements = ref([]); // Holds all form elements
-  const selectedElement = ref(null); // Stores the currently selected element
+  const elements = ref([]);
+  const selectedElementId = ref(null);
 
   const addElement = (element) => {
     elements.value.push({ ...element, id: Date.now().toString() });
   };
 
-  const selectElement = (element) => {
-    selectedElement.value = element; // Set selected element in store
+  const selectElement = (id) => {
+    selectedElementId.value = id;
   };
 
-  const updateElement = (updatedElement) => {
-    const index = elements.value.findIndex((el) => el.id === updatedElement.id);
+  const updateSelectedProperty = (key, value) => {
+    const index = elements.value.findIndex(
+      (el) => el.id === selectedElementId.value
+    );
     if (index !== -1) {
-      elements.value[index] = { ...updatedElement }; // Update the element
+      elements.value[index][key] = value;
     }
   };
 
+  const selectedElement = computed(() =>
+    elements.value.find((el) => el.id === selectedElementId.value)
+  );
+
   return {
     elements,
+    selectedElementId,
     selectedElement,
     addElement,
     selectElement,
-    updateElement,
+    updateSelectedProperty,
   };
 });
