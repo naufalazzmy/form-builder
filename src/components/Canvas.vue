@@ -8,6 +8,8 @@
                     @click="store.selectElement(element.id)">
                     <InputField v-if="element.type === 'input'" :element="element" />
                     <ColumnControl v-if="element.type === 'columnControl'" :element="element" />
+                    <SelectInput v-if="element.type === 'select'" :element="element" />
+
                 </div>
             </template>
         </Draggable>
@@ -19,6 +21,8 @@ import { useBuilderStore } from '@/stores/builder'
 import Draggable from 'vuedraggable'
 import InputField from '@/components/elements/InputField.vue'
 import ColumnControl from '@/components/elements/ColumnControl.vue'
+import SelectInput from '@/components/elements/SelectInput.vue'
+
 
 const store = useBuilderStore()
 

@@ -5,7 +5,11 @@ export const useBuilderStore = defineStore("builder", () => {
   const elements = ref([]);
   const selectedElementId = ref(null);
   const selectedColumnFieldInfo = ref(null); // For selecting inner fields
+  const selectedElement = computed(() =>
+    elements.value.find((el) => el.id === selectedElementId.value)
+  );
 
+  
   const addElement = (element) => {
     const id = Date.now().toString();
     if (element.type === "columnControl") {
@@ -43,9 +47,6 @@ export const useBuilderStore = defineStore("builder", () => {
     }
   };
 
-  const selectedElement = computed(() =>
-    elements.value.find((el) => el.id === selectedElementId.value)
-  );
 
   return {
     elements,

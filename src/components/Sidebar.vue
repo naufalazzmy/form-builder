@@ -8,10 +8,29 @@
         <div class="p-2 bg-white border cursor-pointer" draggable="true" @dragstart="dragColumnControl">
             Column Control
         </div>
+
+        <div class="p-2 bg-white border cursor-pointer" draggable="true" @dragstart="dragSelectField">
+            Select Input
+        </div>
+
     </div>
 </template>
 
 <script setup>
+
+function dragSelectField(event) {
+    const selectElement = {
+        type: 'select',
+        label: 'Select Label',
+        name: 'selectField',
+        options: [
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' }
+        ]
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(selectElement))
+}
+
 function dragInputField(event) {
     const inputElement = {
         type: 'input',
