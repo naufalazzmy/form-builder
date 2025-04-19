@@ -4,7 +4,7 @@
         <Draggable v-model="store.elements" item-key="id" class="space-y-2">
             <template #item="{ element }">
                 <div :key="element.id"
-                    :class="['p-2 bg-white border cursor-pointer', { 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }]"
+                    :class="['p-2 bg-white border', { 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }]"
                     @click="store.selectElement(element.id)">
                     <InputField v-if="element.type === 'input'" :element="element" />
                     <ColumnControl v-if="element.type === 'columnControl'" :element="element" />

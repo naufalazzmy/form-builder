@@ -1,6 +1,6 @@
 <template>
-    <div class="p-2 bg-white border rounded cursor-pointer"
-        :class="{ 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }"
+    <div class="p-2 bg-white"
+        :class="{ 'shadow-lg  ring-blue-400': element.id === store.selectedElementId }"
         @click="store.selectElement(element.id)">
         <label v-if="!element.required" :for="element.name" class="block text-sm font-medium">{{ element.label
         }}</label>
