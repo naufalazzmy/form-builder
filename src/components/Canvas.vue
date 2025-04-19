@@ -9,7 +9,9 @@
                     <InputField v-if="element.type === 'input'" :element="element" />
                     <ColumnControl v-if="element.type === 'columnControl'" :element="element" />
                     <SelectInput v-if="element.type === 'select'" :element="element" />
-
+                    <RadioInput v-if="element.type === 'radio'" :element="element" />
+                    <TextareaInput v-if="element.type === 'textarea'" :element="element" />
+                    <CheckboxInput v-if="element.type === 'checkbox'" :element="element" />
                 </div>
             </template>
         </Draggable>
@@ -22,7 +24,9 @@ import Draggable from 'vuedraggable'
 import InputField from '@/components/elements/InputField.vue'
 import ColumnControl from '@/components/elements/ColumnControl.vue'
 import SelectInput from '@/components/elements/SelectInput.vue'
-
+import RadioInput from '@/components/elements/RadioInput.vue'
+import TextareaInput from '@/components/elements/TextareaInput.vue'
+import CheckboxInput from '@/components/elements/CheckboxInput.vue'
 
 const store = useBuilderStore()
 

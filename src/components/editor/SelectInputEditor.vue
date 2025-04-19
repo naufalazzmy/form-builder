@@ -1,7 +1,18 @@
 <template>
     <div v-if="store.selectedElement?.type === 'select'" class="mb-4">
+        <label class="flex items-center gap-2 mt-2">
+            <input type="checkbox" :checked="store.selectedElement.required"
+                @change="e => update('required', e.target.checked)" class="checkbox" />
+            Required
+        </label>
+
         <label class="block mb-1">Label</label>
         <input v-model="label" @input="update('label', label)" class="w-full border p-1 mb-4" />
+
+        <label class="block mb-1">Name</label>
+        <input v-model="store.selectedElement.name" @input="update('name', store.selectedElement.name)"
+            class="w-full border p-1 mb-4" />
+            
         <label class="block mb-1">Options</label>
         <div v-for="(opt, idx) in store.selectedElement.options" :key="idx" class="flex items-center gap-2 mb-2">
             <input v-model="opt.label" @input="updateOption(idx, 'label', opt.label)" class="border p-1 w-1/2"

@@ -17,6 +17,18 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/SelectInputEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'radio') {
+        return defineAsyncComponent(() => import('@/components/editor/RadioEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'textarea') {
+        return defineAsyncComponent(() => import('@/components/editor/TextareaEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'checkbox') {
+        return defineAsyncComponent(() => import('@/components/editor/CheckboxEditor.vue'))
+    }
+
     // if (store.selectedColumnFieldInfo) {
     //     return defineAsyncComponent(() => import('@/components/editor/ColumnInnerFieldEditor.vue'))
     // }

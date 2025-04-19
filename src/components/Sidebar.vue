@@ -13,6 +13,16 @@
             Select Input
         </div>
 
+        <div class="p-2 bg-white border cursor-pointer" draggable="true" @dragstart="dragRadio">
+            Radio Input
+        </div>
+        <div class="p-2 bg-white border cursor-pointer" draggable="true" @dragstart="dragTextarea">
+            Textarea
+        </div>
+        <div class="p-2 bg-white border cursor-pointer" draggable="true" @dragstart="dragCheckbox">
+            Checkbox
+        </div>
+
     </div>
 </template>
 
@@ -49,4 +59,20 @@ function dragColumnControl(event) {
     }
     event.dataTransfer.setData('application/json', JSON.stringify(columnElement))
 }
+
+function dragRadio(event) {
+    const el = { type: 'radio', label: 'Radio Label', name: 'radioField', options: ['Option 1', 'Option 2'] }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragTextarea(event) {
+    const el = { type: 'textarea', label: 'Textarea Label', name: 'textareaField' }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragCheckbox(event) {
+    const el = { type: 'checkbox', label: 'Checkbox Label', name: 'checkboxField', options: ['Option A', 'Option B'] }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
 </script>

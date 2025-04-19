@@ -1,11 +1,23 @@
 <template>
     <h2 class="font-semibold mb-2">Elemen Input</h2>
 
+    <div class="flex items-center justify-between mt-3">
+        <label class="flex items-center gap-2">
+            <input type="checkbox" :checked="store.selectedElement.required"
+                @change="e => update('required', e.target.checked)" class="checkbox" />
+            Required
+        </label>
+
+        <button @click="remove" class="btn btn-sm btn-error">
+            Delete
+        </button>
+    </div>
+
     <label class="block mb-1">Label</label>
     <input v-model="store.selectedElement.label" @input="update('label', store.selectedElement.label)"
         class="w-full border p-1 mb-4" />
 
-    <label class="block mb-1">Nama Field</label>
+    <label class="block mb-1">Name</label>
     <input v-model="store.selectedElement.name" @input="update('name', store.selectedElement.name)"
         class="w-full border p-1 mb-4" />
 
@@ -25,6 +37,10 @@ const store = useBuilderStore()
 
 function update(key, value) {
     store.updateSelectedProperty(key, value)
+}
+function remove() {
+    console.log('')
+    store.elements.filter(el => el.id !== store.selectedElementId)
 }
 
 </script>

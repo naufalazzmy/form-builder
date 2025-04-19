@@ -3,8 +3,10 @@
     <div v-if="element.type === 'input'" class="p-2 bg-white border cursor-pointer"
         :class="{ 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }"
         @click="selected(element.id)">
-        <label :for="element.name" class="block text-sm font-medium">{{ element.label }}</label>
-        <input class="border px-2 py-1 mt-1 w-full" :type="element.inputType" :name="element.name" disabled />
+        <label v-if="!element.required" :for="element.name" class="block text-sm font-medium">{{ element.label }}</label>
+        <label v-if="element.required" :for="element.name" class="block text-sm font-medium text-red-500">*{{ element.label }}</label>
+        <input class="border px-2 py-1 mt-1 w-full" :required="element.required" :type="element.inputType"
+            :name="element.name" disabled />
     </div>
 </template>
 

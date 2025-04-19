@@ -9,7 +9,6 @@ export const useBuilderStore = defineStore("builder", () => {
     elements.value.find((el) => el.id === selectedElementId.value)
   );
 
-  
   const addElement = (element) => {
     const id = Date.now().toString();
     if (element.type === "columnControl") {
@@ -46,7 +45,6 @@ export const useBuilderStore = defineStore("builder", () => {
       parent[key] = value;
     }
   };
-
 
   return {
     elements,
