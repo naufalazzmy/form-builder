@@ -1,8 +1,6 @@
 <template>
     <!-- FIELD INSIDE COLUMNS -->
     <div v-if="store.selectedElement && store.selectedColumnFieldInfo">
-        <h2 class="font-semibold mb-2">Field dalam Kolom</h2>
-
         <label class="block mb-1">Label</label>
         <input v-model="label" @input="update('label', label)" class="w-full border p-1 mb-4" />
 
@@ -19,7 +17,12 @@
 
     <!-- COLUMN CONTROL -->
     <div v-else-if="store.selectedElement?.type === 'columnControl'">
-        <h2 class="font-semibold mb-2">Column Control</h2>
+
+        <div class="flex items-center justify-between mt-3">
+            <h2 class="font-semibold mb-2">Column Control</h2>
+            <button type="button" @click="remove"
+                class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
+        </div>
 
         <label class="block mb-1">Jumlah Kolom</label>
         <input type="number" v-model.number="columnCount" @input="updateColumnCount" class="w-full border p-1 mb-4"
@@ -97,5 +100,9 @@ function updateColumnCount() {
     }
 
     el.columns = newCols
+}
+
+function remove() {
+    store.deleteSelectedElement();
 }
 </script>

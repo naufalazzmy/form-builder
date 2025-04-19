@@ -7,10 +7,8 @@
                 @change="e => update('required', e.target.checked)" class="checkbox" />
             Required
         </label>
-
-        <button @click="remove" class="btn btn-sm btn-error">
-            Delete
-        </button>
+        <button type="button" @click="remove"
+            class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
     </div>
 
     <label class="block mb-1">Label</label>
@@ -39,8 +37,7 @@ function update(key, value) {
     store.updateSelectedProperty(key, value)
 }
 function remove() {
-    console.log('')
-    store.elements.filter(el => el.id !== store.selectedElementId)
+    store.deleteSelectedElement();
 }
 
 </script>

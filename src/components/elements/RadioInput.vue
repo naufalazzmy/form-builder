@@ -2,9 +2,12 @@
     <div class="p-2 bg-white border rounded cursor-pointer"
         :class="{ 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }"
         @click="store.selectElement(element.id)">
-        <label class="block text-sm font-medium mb-1">{{ element.label }}</label>
+        <label v-if="!element.required" :for="element.name" class="block text-sm font-medium">{{ element.label
+            }}</label>
+        <label v-if="element.required" :for="element.name" class="block text-sm font-medium text-red-500">*{{
+            element.label }}</label>
         <div v-for="(option, idx) in element.options" :key="idx" class="flex items-center gap-2">
-            <input type="radio" :name="element.name" disabled />
+            <input :required="element.required" type="radio" :name="element.name" disabled />
             <span class="text-sm">{{ option }}</span>
         </div>
     </div>
