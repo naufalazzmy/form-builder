@@ -8,6 +8,9 @@ const EditorComponent = computed(() => {
     if (store.selectedElement?.type === 'input') {
         return defineAsyncComponent(() => import('@/components/editor/InputFieldEditor.vue'))
     }
+    if (store.selectedElement?.type === 'number') {
+        return defineAsyncComponent(() => import('@/components/editor/NumberFieldEditor.vue'))
+    }
 
     if (store.selectedElement?.type === 'columnControl') {
         return defineAsyncComponent(() => import('@/components/editor/ColumnControlEditor.vue'))

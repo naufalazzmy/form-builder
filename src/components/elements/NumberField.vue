@@ -1,6 +1,6 @@
 <!-- components/elements/InputField.vue -->
 <template>
-    <div v-if="element.type === 'input'" class="p-2 bg-white "
+    <div v-if="element.type === 'number'" class="p-2 bg-white "
         :class="{ 'shadow-lg ring-blue-400': element.id === store.selectedElementId }" @click="selected(element.id)">
         <label v-if="!element.required" :for="element.name" class="block text-sm font-medium">{{ element.label
             }}</label>

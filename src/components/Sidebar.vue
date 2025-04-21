@@ -15,7 +15,7 @@
                         </svg>
                         Text
                     </span>
-                    <span draggable="true" @dragstart="dragInputField"
+                    <span draggable="true" @dragstart="dragNumberField"
                         class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 ring-1 ring-blue-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -162,6 +162,16 @@ function dragInputField(event) {
         inputType: 'text'
     }
     event.dataTransfer.setData('application/json', JSON.stringify(inputElement))
+}
+
+function dragNumberField(event) {
+    const numberElement = {
+        type: 'number',
+        label: 'NumberLabel',
+        name: 'fieldName',
+        inputType: 'number'
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(numberElement))
 }
 
 function dragColumnControl(event) {

@@ -22,11 +22,11 @@
     <label class="block mb-1">Placeholder</label>
     <input v-model="store.selectedElement.placeholder" @input="update('placeholder', store.selectedElement.placeholder)"
         class="w-full border p-1 mb-4" />
-
+        
     <label class="block mb-1">Input Type</label>
     <select v-model="store.selectedElement.inputType" @change="update('inputType', store.selectedElement.inputType)"
         class="w-full border p-1">
-        <option value="text">Text</option>
+        <option value="number">Number</option>
     </select>
 </template>
 
