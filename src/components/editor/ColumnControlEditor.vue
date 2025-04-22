@@ -53,13 +53,22 @@ const columnSizes = ref([])
 watch(() => store.selectedElement, (el) => {
     if (el?.type === 'columnControl') {
         columnCount.value = el.columns?.length || 2
-        columnSizes.value = el.columnSizes || Array(columnCount.value).fill(Math.floor(12 / columnCount.value))
+        // Use existing columnSizes or initialize with default values
+        columnSizes.value = el.columnSizes?.length ? [...el.columnSizes] :
+            Array(columnCount.value).fill(Math.floor(12 / columnCount.value))
     }
 }, { immediate: true })
 
 function updateColumnSizes() {
     const el = store.selectedElement
     if (!el || el.type !== 'columnControl') return
+
+    // Validate sizes (optional)
+    const total = columnSizes.value.reduce((sum, size) => sum + Number(size), 0)
+    if (total > 12) {
+        alert('Total column sizes cannot exceed 12')
+        return
+    }
 
     el.columnSizes = [...columnSizes.value]
 }
@@ -73,13 +82,20 @@ function updateColumnCount() {
     if (!el || el.type !== 'columnControl') return
 
     const currentCols = el.columns || []
+    const currentSizes = el.columnSizes || []
     const newCols = []
+    const newSizes = []
+
+    const defaultSize = Math.floor(12 / columnCount.value)
 
     for (let i = 0; i < columnCount.value; i++) {
         newCols[i] = currentCols[i] || []
+        newSizes[i] = currentSizes[i] || defaultSize
     }
 
     el.columns = newCols
+    el.columnSizes = newSizes
+    columnSizes.value = [...newSizes] // Update the local ref
 }
 
 function remove() {

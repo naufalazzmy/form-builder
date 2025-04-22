@@ -6,7 +6,7 @@
 
         <div class="grid grid-cols-12 gap-4">
             <div v-for="(col, index) in element.columns" :key="index"
-                :class="['bg-gray-100 p-2 rounded border min-h-[100px]', `col-span-${getColSize(index)}`]">
+                :class="['bg-gray-100 p-2 rounded border min-h-[100px]', `col-span-6`]">
                 <div class="text-sm font-semibold mb-2">Kolom {{ index + 1 }} ({{ getColSize(index) }}/12)</div>
                 <CanvasElement :target-type="'column'" :parent-id="element.id" :column-index="index"
                     class=" border border-gray-300 bg-white p-2 rounded" />

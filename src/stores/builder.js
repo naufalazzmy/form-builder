@@ -23,7 +23,10 @@ export const useBuilderStore = defineStore("builder", {
       if (element.type === "columnControl") {
         const columnCount = element.columnCount || 2;
         const columns = Array.from({ length: columnCount }, () => []);
-        this.elements.push({ ...element, id, columns });
+        const columnSizes = Array(columnCount).fill(
+          Math.floor(12 / columnCount)
+        );
+        this.elements.push({ ...element, id, columns, columnSizes });
       } else {
         this.elements.push({ ...element, id });
       }
