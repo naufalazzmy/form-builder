@@ -1,0 +1,32 @@
+<template>
+    <component :is="resolvedComponent" :element="element" />
+</template>
+
+<script setup>
+import InputField from '@/components/elements/InputField.vue'
+import NumberField from '@/components/elements/NumberField.vue'
+import SelectInput from '@/components/elements/SelectInput.vue'
+import RadioInput from '@/components/elements/RadioInput.vue'
+import TextareaInput from '@/components/elements/TextareaInput.vue'
+import CheckboxInput from '@/components/elements/CheckboxInput.vue'
+import ColumnControl from '@/components/elements/ColumnControl.vue'
+
+const props = defineProps({
+    element: {
+        type: Object,
+        required: true
+    }
+})
+
+const componentsMap = {
+    input: InputField,
+    number: NumberField,
+    select: SelectInput,
+    radio: RadioInput,
+    textarea: TextareaInput,
+    checkbox: CheckboxInput,
+    columnControl: ColumnControl
+}
+
+const resolvedComponent = componentsMap[props.element.type] || null
+</script>
