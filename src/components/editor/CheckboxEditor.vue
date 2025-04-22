@@ -2,8 +2,8 @@
     <div>
         <div class="flex items-center justify-between mt-3">
             <label class="flex items-center gap-2">
-                <input type="checkbox" :checked="element.required"
-                    @change="e => update('required', e.target.checked)" class="checkbox" />
+                <input type="checkbox" :checked="element.required" @change="e => update('required', e.target.checked)"
+                    class="checkbox" />
                 Required
             </label>
             <button type="button" @click="remove"
@@ -11,12 +11,10 @@
         </div>
 
         <label class="block text-sm mb-1">Label</label>
-        <input @input="update('label', element.label)" v-model="element.label"
-            class="border px-2 py-1 mt-1 w-full" />
+        <input @input="update('label', element.label)" v-model="element.label" class="border px-2 py-1 mt-1 w-full" />
 
         <label class="block text-sm mb-1">Name</label>
-        <input @input="update('name', element.name)" v-model="element.name"
-            class="border px-2 py-1 mt-1 w-full" />
+        <input @input="update('name', element.name)" v-model="element.name" class="border px-2 py-1 mt-1 w-full" />
 
         <label class="block text-sm mb-1">Options</label>
         <div v-for="(option, index) in element.options" :key="index" class="flex gap-2 items-center mb-1">
@@ -45,7 +43,11 @@ function removeOption(index) {
 }
 
 function update(key, value) {
-    store.updateSelectedColumnFieldProperty(key, value)
+    if (store.selectedColumnFieldInfo) {
+        store.updateSelectedColumnFieldProperty(key, value)
+    } else {
+        store.updateSelectedProperty(key, value)
+    }
 }
 
 function remove() {

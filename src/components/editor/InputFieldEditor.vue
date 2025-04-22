@@ -3,8 +3,8 @@
 
     <div class="flex items-center justify-between mt-3">
         <label class="flex items-center gap-2">
-            <input type="checkbox" :checked="element.required"
-                @change="e => update('required', e.target.checked)" class="checkbox" />
+            <input type="checkbox" :checked="element.required" @change="e => update('required', e.target.checked)"
+                class="checkbox" />
             Required
         </label>
         <button type="button" @click="remove"
@@ -12,20 +12,17 @@
     </div>
 
     <label class="block mb-1">Label</label>
-    <input v-model="element.label" @input="update('label', element.label)"
-        class="w-full border p-1 mb-4" />
+    <input v-model="element.label" @input="update('label', element.label)" class="w-full border p-1 mb-4" />
 
     <label class="block mb-1">Name</label>
-    <input v-model="element.name" @input="update('name', element.name)"
-        class="w-full border p-1 mb-4" />
+    <input v-model="element.name" @input="update('name', element.name)" class="w-full border p-1 mb-4" />
 
     <label class="block mb-1">Placeholder</label>
     <input v-model="element.placeholder" @input="update('placeholder', element.placeholder)"
         class="w-full border p-1 mb-4" />
 
     <label class="block mb-1">Input Type</label>
-    <select v-model="element.inputType" @change="update('inputType', element.inputType)"
-        class="w-full border p-1">
+    <select v-model="element.inputType" @change="update('inputType', element.inputType)" class="w-full border p-1">
         <option value="text">Text</option>
     </select>
 </template>
@@ -40,7 +37,11 @@ const props = defineProps({
 const store = useBuilderStore()
 
 function update(key, value) {
-    store.updateSelectedColumnFieldProperty(key, value)
+    if (store.selectedColumnFieldInfo) {
+        store.updateSelectedColumnFieldProperty(key, value)
+    } else {
+        store.updateSelectedProperty(key, value)
+    }
 }
 function remove() {
     store.deleteSelectedElement();

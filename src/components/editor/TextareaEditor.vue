@@ -2,8 +2,8 @@
     <div>
         <div class="flex items-center justify-between mt-3">
             <label class="flex items-center gap-2">
-                <input type="checkbox" :checked="element.required"
-                    @change="e => update('required', e.target.checked)" class="checkbox" />
+                <input type="checkbox" :checked="element.required" @change="e => update('required', e.target.checked)"
+                    class="checkbox" />
                 Required
             </label>
             <button type="button" @click="remove"
@@ -11,12 +11,10 @@
         </div>
 
         <label class="block text-sm mb-1">Label</label>
-        <input @input="update('label', element.label)" v-model="element.label"
-            class="w-full border p-1 mb-4" />
+        <input @input="update('label', element.label)" v-model="element.label" class="w-full border p-1 mb-4" />
 
         <label class="block text-sm mb-1">Name</label>
-        <input @input="update('name', element.name)" v-model="element.name"
-            class="w-full border p-1 mb-4" />
+        <input @input="update('name', element.name)" v-model="element.name" class="w-full border p-1 mb-4" />
     </div>
 </template>
 
@@ -24,11 +22,15 @@
 import { useBuilderStore } from '@/stores/builder'
 const store = useBuilderStore()
 const props = defineProps({
-    element: Object
+    element: Object,
 })
 
 function update(key, value) {
-    store.updateSelectedColumnFieldProperty(key, value)
+    if (store.selectedColumnFieldInfo) {
+        store.updateSelectedColumnFieldProperty(key, value)
+    } else {
+        store.updateSelectedProperty(key, value)
+    }
 }
 
 function remove() {
