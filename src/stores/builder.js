@@ -28,6 +28,15 @@ export const useBuilderStore = defineStore("builder", {
         this.elements.push({ ...element, id });
       }
     },
+    addElementToColumn(parentId, columnIndex, element) {
+      const parent = this.elements.find((e) => e.id === parentId); 
+      if (!parent || parent.type !== "columnControl") return;
+
+      parent.columns[columnIndex].push({
+        ...element,
+        id: this.generateId(),
+      });
+    },
 
     selectElement(id) {
       this.selectedElementId = id;

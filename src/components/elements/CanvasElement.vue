@@ -1,11 +1,9 @@
-<!-- CanvasElement.vue -->
 <template>
-    <div class="p-2 bg-gray-50 border rounded min-h-[100px]" @dragover.prevent @drop="handleDrop">
-        <Draggable v-model="localElements" item-key="id" :group="{ name: 'form-elements', pull: true, put: true }"
-            class="space-y-2" @change="emitUpdate">
+    <div class="min-h-[50px] bg-gray-100 p-2" @dragover.prevent @drop="handleDrop">
+        <Draggable :list="elements" item-key="id" class="space-y-2">
             <template #item="{ element }">
-                <div :key="element.id" class="p-2 bg-white border"
-                    :class="{ 'ring-2 ring-blue-400': element.id === store.selectedElementId }"
+                <div :key="element.id"
+                    :class="['p-2 bg-white border', { 'shadow-lg ring-2 ring-blue-400': element.id === store.selectedElementId }]"
                     @click.stop="store.selectElement(element.id)">
                     <InputField v-if="element.type === 'input'" :element="element" />
                     <NumberField v-if="element.type === 'number'" :element="element" />
@@ -21,10 +19,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 import Draggable from 'vuedraggable'
 import { useBuilderStore } from '@/stores/builder'
-
 import InputField from '@/components/elements/InputField.vue'
 import NumberField from '@/components/elements/NumberField.vue'
 import SelectInput from '@/components/elements/SelectInput.vue'
@@ -34,29 +31,36 @@ import CheckboxInput from '@/components/elements/CheckboxInput.vue'
 import ColumnControl from '@/components/elements/ColumnControl.vue'
 
 const props = defineProps({
-    elements: Array,
+    targetType: { type: String, required: true }, // 'root' or 'column'
+    parentId: { type: String, default: null },
+    columnIndex: { type: Number, default: null }
 })
-
-const emit = defineEmits(['update:elements'])
 
 const store = useBuilderStore()
-const localElements = ref([...props.elements])
 
-watch(() => props.elements, (val) => {
-    localElements.value = [...val]
+const elements = computed(() => {
+    if (props.targetType === 'root') return store.elements
+    if (props.targetType === 'column') {
+        const parent = store.elements.find(e => e.id === props.parentId)
+        return parent?.columns?.[props.columnIndex] || []
+    }
+    return []
 })
 
-function emitUpdate() {
-    emit('update:elements', [...localElements.value])
-}
-
 function handleDrop(event) {
+    event.stopPropagation() // 🔥 tambahkan ini agar event tidak bubble ke parent canvas
+
     try {
         const data = JSON.parse(event.dataTransfer.getData('application/json'))
-        localElements.value.push({ ...data, id: crypto.randomUUID() })
-        emitUpdate()
-    } catch (err) {
-        // Skip internal reorder drop
+
+        if (props.targetType === 'column') {
+            store.addElementToColumn(props.parentId, props.columnIndex, data)
+        } else {
+            store.addElement(data)
+        }
+    } catch (e) {
+        // handle internal sort
     }
 }
+
 </script>

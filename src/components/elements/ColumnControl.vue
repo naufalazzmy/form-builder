@@ -8,8 +8,8 @@
             <div v-for="(col, index) in element.columns" :key="index"
                 :class="['bg-gray-100 p-2 rounded border min-h-[100px]', `col-span-${getColSize(index)}`]">
                 <div class="text-sm font-semibold mb-2">Kolom {{ index + 1 }} ({{ getColSize(index) }}/12)</div>
-                <CanvasElement v-model:elements="element.columns[index]"
-                    class="border border-gray-300 bg-white p-2 rounded" />
+                <CanvasElement :target-type="'column'" :parent-id="element.id" :column-index="index"
+                    class=" border border-gray-300 bg-white p-2 rounded" />
             </div>
         </div>
     </div>
