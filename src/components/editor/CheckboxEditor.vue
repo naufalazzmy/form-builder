@@ -2,7 +2,7 @@
     <div>
         <div class="flex items-center justify-between mt-3">
             <label class="flex items-center gap-2">
-                <input type="checkbox" :checked="store.selectedElement.required"
+                <input type="checkbox" :checked="element.required"
                     @change="e => update('required', e.target.checked)" class="checkbox" />
                 Required
             </label>
@@ -11,16 +11,16 @@
         </div>
 
         <label class="block text-sm mb-1">Label</label>
-        <input @input="update('label', store.selectedElement.label)" v-model="store.selectedElement.label"
+        <input @input="update('label', element.label)" v-model="element.label"
             class="border px-2 py-1 mt-1 w-full" />
 
         <label class="block text-sm mb-1">Name</label>
-        <input @input="update('name', store.selectedElement.name)" v-model="store.selectedElement.name"
+        <input @input="update('name', element.name)" v-model="element.name"
             class="border px-2 py-1 mt-1 w-full" />
 
         <label class="block text-sm mb-1">Options</label>
-        <div v-for="(option, index) in store.selectedElement.options" :key="index" class="flex gap-2 items-center mb-1">
-            <input v-model="store.selectedElement.options[index]" class="border px-2 py-1 mt-1 w-full" />
+        <div v-for="(option, index) in element.options" :key="index" class="flex gap-2 items-center mb-1">
+            <input v-model="element.options[index]" class="border px-2 py-1 mt-1 w-full" />
             <button @click="removeOption(index)" class="btn btn-sm btn-error">✕</button>
         </div>
         <button @click="addOption" class="btn btn-sm btn-primary mt-2">+ Add Option</button>
@@ -30,7 +30,9 @@
 <script setup>
 import { useBuilderStore } from '@/stores/builder'
 const store = useBuilderStore()
-const props = defineProps({ element: Object })
+const props = defineProps({
+    element: Object
+})
 
 function addOption() {
     if (!store.selectedElement.options) {
@@ -43,7 +45,7 @@ function removeOption(index) {
 }
 
 function update(key, value) {
-    store.updateSelectedProperty(key, value)
+    store.updateSelectedColumnFieldProperty(key, value)
 }
 
 function remove() {

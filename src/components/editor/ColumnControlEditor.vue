@@ -1,19 +1,8 @@
 <template>
     <!-- FIELD INSIDE COLUMNS -->
-    <div v-if="store.selectedElement && store.selectedColumnFieldInfo">
-        <label class="block mb-1">Label</label>
-        <input v-model="label" @input="update('label', label)" class="w-full border p-1 mb-4" />
-
-        <label class="block mb-1">Nama Field</label>
-        <input v-model="name" @input="update('name', name)" class="w-full border p-1 mb-4" />
-
-        <label class="block mb-1">Input Type</label>
-        <select v-model="inputType" @change="update('inputType', inputType)" class="w-full border p-1">
-            <option value="text">Text</option>
-            <option value="number">Number</option>
-            <option value="date">Date</option>
-        </select>
-    </div>
+    <template v-if="store.selectedElement && store.selectedColumnFieldInfo">
+        <EditorRenderer :element="selectedColumnElement" />
+    </template>
 
     <!-- COLUMN CONTROL -->
     <div v-else-if="store.selectedElement?.type === 'columnControl'">
@@ -37,7 +26,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch , computed} from 'vue'
+import EditorRenderer from '@/components/EditorRenderer.vue'
 import { useBuilderStore } from '@/stores/builder'
 
 const store = useBuilderStore()
@@ -46,6 +36,10 @@ const label = ref('')
 const name = ref('')
 const inputType = ref('text')
 const columnCount = ref(2)
+
+const props = defineProps({
+    element: Object
+})
 
 // Sync field value when selected changes
 const columnSizes = ref([])
@@ -74,8 +68,15 @@ function updateColumnSizes() {
 }
 
 function update(key, value) {
-    store.updateSelectedProperty(key, value)
+    store.updateSelectedColumnFieldProperty(key, value)
 }
+
+const selectedColumnElement = computed(() => {
+    if (!store.selectedElement || !store.selectedColumnFieldInfo) return null
+    const { colIndex, fieldId } = store.selectedColumnFieldInfo
+    const col = store.selectedElement.columns?.[colIndex]
+    return col?.find(field => field.id === fieldId) || null
+})
 
 function updateColumnCount() {
     const el = store.selectedElement

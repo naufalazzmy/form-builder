@@ -1,5 +1,5 @@
 <template>
-    <component :is="resolvedComponent" :element="element" />
+    <component :is="resolvedComponent" v-bind="passedProps" />
 </template>
 
 <script setup>
@@ -11,12 +11,9 @@ import TextareaInput from '@/components/editor/TextareaEditor.vue'
 import CheckboxInput from '@/components/editor/CheckboxEditor.vue'
 import ColumnControl from '@/components/editor/ColumnControlEditor.vue'
 
-const props = defineProps({
-    element: {
-        type: Object,
-        required: true
-    }
-})
+import { computed } from 'vue'
+import { useBuilderStore } from '@/stores/builder'
+const store = useBuilderStore()
 
 const componentsMap = {
     input: InputField,
@@ -28,5 +25,22 @@ const componentsMap = {
     columnControl: ColumnControl
 }
 
-const resolvedComponent = componentsMap[props.element.type] || null
+// Komputasi elemen aktif berdasarkan context
+const activeElement = computed(() => {
+    if (store.selectedColumnFieldInfo) {
+        const { colIndex, fieldId } = store.selectedColumnFieldInfo
+        const col = store.selectedElement?.columns?.[colIndex] || []
+        return col.find(field => field.id === fieldId) || null
+    }
+    return store.selectedElement
+})
+
+const resolvedComponent = computed(() => {
+    return componentsMap[activeElement.value?.type] || null
+})
+
+// Kirim element hanya jika diperlukan oleh komponen
+const passedProps = computed(() => {
+    return activeElement.value ? { element: activeElement.value } : {}
+})
 </script>

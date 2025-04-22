@@ -32,7 +32,7 @@ export const useBuilderStore = defineStore("builder", {
       }
     },
     addElementToColumn(parentId, columnIndex, element) {
-      const parent = this.elements.find((e) => e.id === parentId); 
+      const parent = this.elements.find((e) => e.id === parentId);
       if (!parent || parent.type !== "columnControl") return;
 
       parent.columns[columnIndex].push({
@@ -52,17 +52,22 @@ export const useBuilderStore = defineStore("builder", {
     },
 
     updateSelectedProperty(key, value) {
-      const parent = this.elements.find(
-        (el) => el.id === this.selectedElementId
-      );
-      if (!parent) return;
+      // Untuk element biasa (di root)
+      if (this.selectedElement && !this.selectedColumnFieldInfo) {
+        this.selectedElement[key] = value;
+      }
+    },
 
-      if (this.selectedColumnFieldInfo) {
-        const { colIndex, fieldId } = this.selectedColumnFieldInfo;
-        const field = parent.columns[colIndex].find((f) => f.id === fieldId);
-        if (field) field[key] = value;
-      } else {
-        parent[key] = value;
+    updateSelectedColumnFieldProperty(key, value) {
+      // Untuk element di dalam columnControl
+      if (!this.selectedElement || !this.selectedColumnFieldInfo) return;
+
+      const { colIndex, fieldId } = this.selectedColumnFieldInfo;
+      const field = this.selectedElement.columns?.[colIndex]?.find(
+        (f) => f.id === fieldId
+      );
+      if (field) {
+        field[key] = value;
       }
     },
 

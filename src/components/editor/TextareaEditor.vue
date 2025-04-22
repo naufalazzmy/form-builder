@@ -2,7 +2,7 @@
     <div>
         <div class="flex items-center justify-between mt-3">
             <label class="flex items-center gap-2">
-                <input type="checkbox" :checked="store.selectedElement.required"
+                <input type="checkbox" :checked="element.required"
                     @change="e => update('required', e.target.checked)" class="checkbox" />
                 Required
             </label>
@@ -11,11 +11,11 @@
         </div>
 
         <label class="block text-sm mb-1">Label</label>
-        <input @input="update('label', store.selectedElement.label)" v-model="store.selectedElement.label"
+        <input @input="update('label', element.label)" v-model="element.label"
             class="w-full border p-1 mb-4" />
 
         <label class="block text-sm mb-1">Name</label>
-        <input @input="update('name', store.selectedElement.name)" v-model="store.selectedElement.name"
+        <input @input="update('name', element.name)" v-model="element.name"
             class="w-full border p-1 mb-4" />
     </div>
 </template>
@@ -23,10 +23,12 @@
 <script setup>
 import { useBuilderStore } from '@/stores/builder'
 const store = useBuilderStore()
-const props = defineProps({ element: Object })
+const props = defineProps({
+    element: Object
+})
 
 function update(key, value) {
-    store.updateSelectedProperty(key, value)
+    store.updateSelectedColumnFieldProperty(key, value)
 }
 
 function remove() {

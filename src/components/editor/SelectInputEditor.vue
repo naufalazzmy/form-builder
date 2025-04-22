@@ -1,8 +1,8 @@
 <template>
-    <div v-if="store.selectedElement?.type === 'select'" class="mb-4">
+    <div v-if="element?.type === 'select'" class="mb-4">
         <div class="flex items-center justify-between mt-3">
             <label class="flex items-center gap-2 mt-2">
-                <input type="checkbox" :checked="store.selectedElement.required"
+                <input type="checkbox" :checked="element.required"
                     @change="e => update('required', e.target.checked)" class="checkbox" />
                 Required
             </label>
@@ -14,11 +14,11 @@
         <input v-model="label" @input="update('label', label)" class="w-full border p-1 mb-4" />
 
         <label class="block mb-1">Name</label>
-        <input v-model="store.selectedElement.name" @input="update('name', store.selectedElement.name)"
+        <input v-model="element.name" @input="update('name', element.name)"
             class="w-full border p-1 mb-4" />
 
         <label class="block mb-1">Options</label>
-        <div v-for="(opt, idx) in store.selectedElement.options" :key="idx" class="flex items-center gap-2 mb-2">
+        <div v-for="(opt, idx) in element.options" :key="idx" class="flex items-center gap-2 mb-2">
             <input v-model="opt.label" @input="updateOption(idx, 'label', opt.label)" class="border p-1 w-1/2"
                 placeholder="Label" />
             <input v-model="opt.value" @input="updateOption(idx, 'value', opt.value)" class="border p-1 w-1/2"
@@ -34,6 +34,9 @@ import { ref } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
 
 const store = useBuilderStore()
+const props = defineProps({
+    element: Object
+})
 
 const label = ref('')
 
@@ -53,7 +56,7 @@ function updateOption(index, key, value) {
 }
 
 function update(key, value) {
-    store.updateSelectedProperty(key, value)
+    store.updateSelectedColumnFieldProperty(key, value)
 }
 
 function remove() {
