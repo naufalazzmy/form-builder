@@ -1,38 +1,35 @@
-<!-- components/elements/ColumnControl.vue -->
 <template>
-    <div v-if="element.type === 'columnControl'" class="space-y-2">
-        <div class="flex gap-4">
-            <div v-for="(col, colIndex) in element.columns" :key="colIndex" class="flex-1 space-y-2 border p-2">
-                <div v-for="field in col" :key="field.id"
-                    class="p-2 bg-gray-50 border rounded cursor-pointer hover:bg-blue-50"
-                    :class="{ 'ring-2 ring-blue-500': isSelectedField(element.id, colIndex, field.id) }"
-                    @click.stop="store.selectColumnField(element.id, colIndex, field.id)">
-                    <label class="text-xs font-medium">{{ field.label }}</label>
-                    <input :type="field.inputType" :name="field.name" class="w-full border p-1" disabled />
-                </div>
+    <div class="border border-dashed border-gray-400 p-4 rounded mb-4">
+        <div class="mb-2 flex justify-between items-center">
+            <h3 class="font-semibold">Column Control (12-grid layout)</h3>
+        </div>
+
+        <div class="grid grid-cols-12 gap-4">
+            <div v-for="(col, index) in element.columns" :key="index"
+                :class="['bg-gray-100 p-2 rounded border min-h-[100px]', `col-span-${getColSize(index)}`]">
+                <div class="text-sm font-semibold mb-2">Kolom {{ index + 1 }} ({{ getColSize(index) }}/12)</div>
+                <CanvasElement v-model:elements="element.columns[index]"
+                    class="border border-gray-300 bg-white p-2 rounded" />
             </div>
         </div>
-        <p class="text-sm text-gray-500">{{ element.columns.length }} columns</p>
     </div>
 </template>
 
 <script setup>
-import { useBuilderStore } from '@/stores/builder'
+import CanvasElement from '@/components/elements/CanvasElement.vue'
+import { computed } from 'vue'
 
-const store = useBuilderStore()
 const props = defineProps({
     element: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 })
 
-function isSelectedField(parentId, colIndex, fieldId) {
-    return (
-        store.selectedElementId === parentId &&
-        store.selectedColumnFieldInfo &&
-        store.selectedColumnFieldInfo.colIndex === colIndex &&
-        store.selectedColumnFieldInfo.fieldId === fieldId
-    )
+// Ambil ukuran kolom dari props.element.columnSizes[index] atau fallback 12 / jumlah kolom
+const getColSize = (index) => {
+    const sizes = props.element.columnSizes || []
+    const defaultSize = Math.floor(12 / props.element.columns.length)
+    return sizes[index] || defaultSize
 }
 </script>
