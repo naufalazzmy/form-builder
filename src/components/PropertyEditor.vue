@@ -41,7 +41,7 @@ const EditorComponent = computed(() => {
 </script>
 
 <template>
-    <div class="p-4 w-1/4 border-l bg-gray-50 overflow-y-auto">
+    <div class="p-4 w-1/5 border-l bg-gray-50 overflow-y-auto">
         <component :element="store.selectedElement" :is="EditorComponent" v-if="EditorComponent" />
         <p v-else class="text-gray-400 italic">Tidak ada elemen yang dipilih</p>
     </div>

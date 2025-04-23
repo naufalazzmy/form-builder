@@ -1,6 +1,6 @@
 <!-- Canvas.vue -->
 <template>
-    <div class="flex-1 p-4 bg-gray-100 min-h-screen" @dragover.prevent @drop="handleDrop">
+    <div class="flex-1 p-4 bg-gray-100 h-full overflow-y-auto" @dragover.prevent @drop="handleDrop">
         <Draggable v-model="store.elements" item-key="id" class="space-y-2">
             <template #item="{ element }">
                 <div :key="element.id"

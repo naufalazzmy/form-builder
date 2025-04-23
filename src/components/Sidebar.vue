@@ -1,7 +1,6 @@
 <!-- Sidebar.vue -->
 <template>
-
-    <div class="p-4 border-r w-1/4 bg-gray-50 space-y-2">
+    <div class="p-4 border-r w-1/5 bg-gray-50 space-y-2">
         <div class="flex flex-col gap-6">
             <div class="flex flex-col gap-2">
                 <h1>Fields</h1>
