@@ -57,11 +57,14 @@ function isSelected(id) {
 
 
 function handleDrop(event) {
-    event.stopPropagation() // 🔥 tambahkan ini agar event tidak bubble ke parent canvas
+    event.stopPropagation()
 
     try {
         const data = JSON.parse(event.dataTransfer.getData('application/json'))
-
+        if (props.targetType === 'column' && data.type === 'columnControl') {
+            alert('Column Control tidak boleh berada di dalam kolom.')
+            return
+        }
         if (props.targetType === 'column') {
             store.addElementToColumn(props.parentId, props.columnIndex, data)
         } else {
