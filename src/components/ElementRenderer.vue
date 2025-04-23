@@ -11,6 +11,8 @@ import RadioInput from '@/components/elements/RadioInput.vue'
 import TextareaInput from '@/components/elements/TextareaInput.vue'
 import CheckboxInput from '@/components/elements/CheckboxInput.vue'
 import ColumnControl from '@/components/elements/ColumnControl.vue'
+import Anotation from '@/components/elements/Anotation.vue'
+
 
 const props = defineProps({
     element: {
@@ -27,7 +29,8 @@ const componentsMap = {
     radio: RadioInput,
     textarea: TextareaInput,
     checkbox: CheckboxInput,
-    columnControl: ColumnControl
+    columnControl: ColumnControl,
+    anotation: Anotation
 }
 
 const resolvedComponent = componentsMap[props.element.type] || null

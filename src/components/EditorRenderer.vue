@@ -11,6 +11,7 @@ import RadioInput from '@/components/editor/RadioEditor.vue'
 import TextareaInput from '@/components/editor/TextareaEditor.vue'
 import CheckboxInput from '@/components/editor/CheckboxEditor.vue'
 import ColumnControl from '@/components/editor/ColumnControlEditor.vue'
+import AnotationEditor from '@/components/editor/AnotationEditor.vue'
 
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
@@ -24,7 +25,8 @@ const componentsMap = {
     radio: RadioInput,
     textarea: TextareaInput,
     checkbox: CheckboxInput,
-    columnControl: ColumnControl
+    columnControl: ColumnControl,
+    anotation: AnotationEditor
 }
 
 // Komputasi elemen aktif berdasarkan context
@@ -34,6 +36,7 @@ const activeElement = computed(() => {
         const col = store.selectedElement?.columns?.[colIndex] || []
         return col.find(field => field.id === fieldId) || null
     }
+
     return store.selectedElement
 })
 

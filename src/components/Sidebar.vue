@@ -72,16 +72,7 @@
                         </svg>
                         Checkbox
                     </span>
-                    <span draggable="true" @dragstart="dragCheckbox"
-                        class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 ring-1 ring-blue-700/10 ring-inset">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                        </svg>
-                        Draw
-                    </span>
-                    <span draggable="true" @dragstart="dragCheckbox"
+                    <span draggable="true" @dragstart="dragAnotation"
                         class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 ring-1 ring-blue-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path
@@ -89,7 +80,6 @@
                             <path
                                 d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                         </svg>
-
                         Anotation
                     </span>
                 </div>
@@ -273,6 +263,20 @@ function dragCheckbox(event) {
             { name: 'name 2', label: 'Option 2', value: 'option2' },
             { name: 'name 3', label: 'Option 3', value: 'option3' }
         ]
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragAnotation(event) {
+    const el = {
+        type: 'anotation',
+        label: 'Anotation Label',
+        height: 'width',
+        width: 'height',
+        src: '',
+        name: '',
+        class: 'ImageAnotator',
+
     }
     event.dataTransfer.setData('application/json', JSON.stringify(el))
 }

@@ -36,6 +36,10 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/CheckboxEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'anotation') {
+        return defineAsyncComponent(() => import('@/components/editor/AnotationEditor.vue'))
+    }
+
     // if (store.selectedColumnFieldInfo) {
     //     return defineAsyncComponent(() => import('@/components/editor/ColumnInnerFieldEditor.vue'))
     // }
