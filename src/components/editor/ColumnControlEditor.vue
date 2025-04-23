@@ -12,6 +12,12 @@
                 class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
         </div>
 
+        <label class="block mb-1">Name</label>
+        <input v-model="element.name" @input="update('name', element.name)" class="w-full border p-1 mb-4" />
+
+        <label class="block mb-1">Classes</label>
+        <input v-model="element.class" @input="update('class', element.class)" class="w-full border p-1 mb-4" />
+
         <label class="block mb-1">Jumlah Kolom</label>
         <input type="number" v-model.number="columnCount" @input="updateColumnCount" class="w-full border p-1 mb-4"
             min="1" max="12" />

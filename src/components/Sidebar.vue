@@ -96,7 +96,7 @@
                         </svg>
                         Column Control
                     </span>
-                    <span draggable="true" @dragstart="dragInputField"
+                    <span draggable="true" @dragstart="dragTitle"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 hover:bg-green-100 ring-1 ring-green-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -106,7 +106,7 @@
 
                         Title
                     </span>
-                    <span draggable="true" @dragstart="dragInputField"
+                    <span draggable="true" @dragstart="dragSection"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 hover:bg-green-100 ring-1 ring-green-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -115,7 +115,7 @@
                         </svg>
                         Section
                     </span>
-                    <span draggable="true" @dragstart="dragSelectField"
+                    <span draggable="true" @dragstart="dragText"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 hover:bg-green-100 ring-1 ring-green-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -124,7 +124,7 @@
                         </svg>
                         Text
                     </span>
-                    <span draggable="true" @dragstart="dragRadio"
+                    <span draggable="true" @dragstart="dragImage"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 hover:bg-green-100 ring-1 ring-green-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path fill-rule="evenodd"
@@ -133,7 +133,7 @@
                         </svg>
                         Image
                     </span>
-                    <span draggable="true" @dragstart="dragRadio"
+                    <span draggable="true" @dragstart="dragDivider"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 hover:bg-green-100 ring-1 ring-green-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -214,7 +214,8 @@ function dragDateField(event) {
 function dragColumnControl(event) {
     const columnElement = {
         type: 'columnControl',
-        label: 'Column',
+        class: '',
+        name: 'columnName',
         columnCount: 2 // Default 2 kolom
     }
     event.dataTransfer.setData('application/json', JSON.stringify(columnElement))
@@ -277,6 +278,58 @@ function dragAnotation(event) {
         name: '',
         class: 'ImageAnotator',
 
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragImage(event) {
+    const el = {
+        type: 'image',
+        label: 'Image Label',
+        height: 'width',
+        width: 'height',
+        src: '',
+        name: '',
+        class: '',
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragTitle(event) {
+    const el = {
+        type: 'title',
+        text: 'Title',
+        name: 'titleName',
+        class: '',
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragDivider(event) {
+    const el = {
+        type: 'divider',
+        name: '',
+        class: '',
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragSection(event) {
+    const el = {
+        type: 'section',
+        text: '#Section',
+        name: 'sectionName',
+        class: '',
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(el))
+}
+
+function dragText(event) {
+    const el = {
+        type: 'text',
+        text: 'long text...',
+        name: 'textName',
+        class: '',
     }
     event.dataTransfer.setData('application/json', JSON.stringify(el))
 }

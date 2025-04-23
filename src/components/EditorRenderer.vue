@@ -12,6 +12,11 @@ import TextareaInput from '@/components/editor/TextareaEditor.vue'
 import CheckboxInput from '@/components/editor/CheckboxEditor.vue'
 import ColumnControl from '@/components/editor/ColumnControlEditor.vue'
 import AnotationEditor from '@/components/editor/AnotationEditor.vue'
+import TitleEditor from '@/components/editor/TitleEditor.vue'
+import SectionEditor from '@/components/editor/SectionEditor.vue'
+import TextEditor from '@/components/editor/TextEditor.vue'
+import Image from '@/components/editor/ImageEditor.vue'
+import Divider from '@/components/editor/DividerEditor.vue'
 
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
@@ -26,7 +31,12 @@ const componentsMap = {
     textarea: TextareaInput,
     checkbox: CheckboxInput,
     columnControl: ColumnControl,
-    anotation: AnotationEditor
+    anotation: AnotationEditor,
+    title: TitleEditor,
+    section: SectionEditor,
+    text: TextEditor,
+    image: Image,
+    divider: Divider
 }
 
 // Komputasi elemen aktif berdasarkan context

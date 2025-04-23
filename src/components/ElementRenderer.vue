@@ -12,7 +12,11 @@ import TextareaInput from '@/components/elements/TextareaInput.vue'
 import CheckboxInput from '@/components/elements/CheckboxInput.vue'
 import ColumnControl from '@/components/elements/ColumnControl.vue'
 import Anotation from '@/components/elements/Anotation.vue'
-
+import Title from '@/components/elements/TitleElement.vue'
+import Section from '@/components/elements/SectionElement.vue'
+import Text from '@/components/elements/TextElement.vue'
+import Image from '@/components/elements/ImageElement.vue'
+import Divider from '@/components/elements/DividerElement.vue'
 
 const props = defineProps({
     element: {
@@ -30,7 +34,12 @@ const componentsMap = {
     textarea: TextareaInput,
     checkbox: CheckboxInput,
     columnControl: ColumnControl,
-    anotation: Anotation
+    anotation: Anotation,
+    title: Title,
+    section: Section,
+    text: Text,
+    image: Image,
+    divider: Divider
 }
 
 const resolvedComponent = componentsMap[props.element.type] || null

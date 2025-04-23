@@ -1,6 +1,6 @@
 <!-- components/elements/SelectInput.vue -->
 <template>
-    <div class="p-2 bg-white" :class="{ 'shadow-lg ring-blue-400': element.id === store.selectedElementId }"
+    <div class="p-2 mb-1 bg-white" :class="{ 'shadow-lg ring-blue-400': element.id === store.selectedElementId }"
         @click="store.selectElement(element.id)">
         <div :class="element.horizontal ? 'flex items-center' : ''">
             <label v-if="!element.required" :for="element.name" :class="element.horizontal ? 'mr-2' : ''" class="block text-sm font-medium">{{ element.label
@@ -13,7 +13,6 @@
                 </option>
             </select>
         </div>
-
         <div class="flex justify-between">
             <small class="text-blue-500">name:[ {{ element.name }} ]</small>
             <small class="text-stone-900">{{ element.type }}</small>

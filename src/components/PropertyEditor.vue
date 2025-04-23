@@ -40,9 +40,25 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/AnotationEditor.vue'))
     }
 
-    // if (store.selectedColumnFieldInfo) {
-    //     return defineAsyncComponent(() => import('@/components/editor/ColumnInnerFieldEditor.vue'))
-    // }
+    if (store.selectedElement?.type === 'title') {
+        return defineAsyncComponent(() => import('@/components/editor/TitleEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'section') {
+        return defineAsyncComponent(() => import('@/components/editor/SectionEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'text') {
+        return defineAsyncComponent(() => import('@/components/editor/TextEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'image') {
+        return defineAsyncComponent(() => import('@/components/editor/ImageEditor.vue'))
+    }
+
+    if (store.selectedElement?.type === 'divider') {
+        return defineAsyncComponent(() => import('@/components/editor/DividerEditor.vue'))
+    }
 
     return null
 })
