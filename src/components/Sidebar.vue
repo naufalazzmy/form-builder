@@ -158,7 +158,12 @@ function dragInputField(event) {
         type: 'input',
         label: 'Label',
         name: 'fieldName',
-        inputType: 'text'
+        inputType: 'text',
+        required: false,
+        horizontal: false,
+        class: '',
+        prepend: '',
+        append: ''
     }
     event.dataTransfer.setData('application/json', JSON.stringify(inputElement))
 }
