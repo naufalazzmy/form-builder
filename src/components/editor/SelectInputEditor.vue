@@ -35,7 +35,7 @@
                 placeholder="Value" />
             <button @click="removeOption(idx)" class="text-red-500 text-sm">✕</button>
         </div>
-        <button @click="addOption" class="bg-blue-500 text-white text-sm px-2 py-1 rounded">+ Tambah Option</button>
+        <button @click="addOption" class="bg-blue-500 text-white text-sm px-2 py-1 rounded">+ Add Option</button>
     </div>
 </template>
 
@@ -59,8 +59,23 @@ function addOption() {
 
 
 function removeOption(index) {
-    store.selectedElement.options.splice(index, 1)
+    if (store.selectedColumnFieldInfo) {
+        const { colIndex, fieldId, parentId } = store.selectedColumnFieldInfo
+        const parent = store.elements.find(el => el.id === parentId)
+
+        if (parent && parent.columns?.[colIndex]) {
+            const targetField = parent.columns[colIndex].find(el => el.id === fieldId)
+            if (targetField && targetField.options) {
+                targetField.options.splice(index, 1)
+            }
+        }
+    } else {
+        if (store.selectedElement.options) {
+            store.selectedElement.options.splice(index, 1)
+        }
+    }
 }
+
 
 function updateOption(index, key, value) {
     store.selectedElement.options[index][key] = value

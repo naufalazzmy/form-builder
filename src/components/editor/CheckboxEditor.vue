@@ -41,7 +41,7 @@
                 placeholder="Value" />
             <button @click="removeOption(idx)" class="text-red-500 text-sm">✕</button>
         </div>
-        <button @click="addOption" class="btn btn-sm btn-primary mt-2">+ Add Option</button>
+        <button @click="addOption" class="bg-blue-500 text-white text-sm px-2 py-1 rounded">+ Add Option</button>
         <!-- <div v-for="(option, index) in element.options" :key="index" class="flex gap-2 items-center mb-1">
             <input v-model="element.options[index]" class="border px-2 py-1 mt-1 w-full" />
             <button @click="removeOption(index)" class="btn btn-sm btn-error">✕</button>
@@ -61,10 +61,24 @@ function addOption() {
     if (!props.element.options) {
         props.element.options = []
     }
-    props.element.options.push({name:'name', label: 'Option', value: 'option' })
+    props.element.options.push({ name: 'name', label: 'Option', value: 'option' })
 }
 function removeOption(index) {
-    store.selectedElement.options.splice(index, 1)
+    if (store.selectedColumnFieldInfo) {
+        const { colIndex, fieldId, parentId } = store.selectedColumnFieldInfo
+        const parent = store.elements.find(el => el.id === parentId)
+
+        if (parent && parent.columns?.[colIndex]) {
+            const targetField = parent.columns[colIndex].find(el => el.id === fieldId)
+            if (targetField && targetField.options) {
+                targetField.options.splice(index, 1)
+            }
+        }
+    } else {
+        if (store.selectedElement.options) {
+            store.selectedElement.options.splice(index, 1)
+        }
+    }
 }
 
 function update(key, value) {
