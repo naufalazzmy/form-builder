@@ -5,6 +5,7 @@
 <script setup>
 import InputField from '@/components/editor/InputFieldEditor.vue'
 import NumberField from '@/components/editor/NumberFieldEditor.vue'
+import DateField from '@/components/editor/DateFieldEditor.vue'
 import SelectInput from '@/components/editor/SelectInputEditor.vue'
 import RadioInput from '@/components/editor/RadioEditor.vue'
 import TextareaInput from '@/components/editor/TextareaEditor.vue'
@@ -18,6 +19,7 @@ const store = useBuilderStore()
 const componentsMap = {
     input: InputField,
     number: NumberField,
+    date: DateField,
     select: SelectInput,
     radio: RadioInput,
     textarea: TextareaInput,

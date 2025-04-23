@@ -1,12 +1,12 @@
 <template>
-    <div v-if="element.type === 'number'" class="p-2 bg-white "
+    <div v-if="element.type === 'date'" class="p-2 bg-white "
         :class="{ 'shadow-lg ring-blue-400': element.id === store.selectedElementId }" @click="selected(element.id)">
         <div v-if="element.horizontal">
 
             <div class="flex items-center">
                 <label v-if="!element.required" :for="element.name" class="block mr-2 text-sm font-medium">{{
                     element.label
-                    }}</label>
+                }}</label>
                 <label v-else :for="element.name" class="block mr-2 text-sm font-medium text-red-500">*{{
                     element.label }}</label>
                 <span v-if="element.prepend"
@@ -23,7 +23,7 @@
         </div>
         <div v-else>
             <label v-if="!element.required" :for="element.name" class="block text-sm font-medium">{{ element.label
-            }}</label>
+                }}</label>
             <label v-else :for="element.name" class="block text-sm font-medium text-red-500">*{{
                 element.label }}</label>
             <div class="flex">

@@ -12,6 +12,10 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/NumberFieldEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'date') {
+        return defineAsyncComponent(() => import('@/components/editor/DateFieldEditor.vue'))
+    }
+
     if (store.selectedElement?.type === 'columnControl') {
         return defineAsyncComponent(() => import('@/components/editor/ColumnControlEditor.vue'))
     }

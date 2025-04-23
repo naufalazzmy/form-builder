@@ -5,6 +5,7 @@
 <script setup>
 import InputField from '@/components/elements/InputField.vue'
 import NumberField from '@/components/elements/NumberField.vue'
+import DateField from '@/components/elements/DateField.vue'
 import SelectInput from '@/components/elements/SelectInput.vue'
 import RadioInput from '@/components/elements/RadioInput.vue'
 import TextareaInput from '@/components/elements/TextareaInput.vue'
@@ -21,6 +22,7 @@ const props = defineProps({
 const componentsMap = {
     input: InputField,
     number: NumberField,
+    date: DateField,
     select: SelectInput,
     radio: RadioInput,
     textarea: TextareaInput,

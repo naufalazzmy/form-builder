@@ -24,7 +24,7 @@
 
                         Number
                     </span>
-                    <span draggable="true" @dragstart="dragInputField"
+                    <span draggable="true" @dragstart="dragDateField"
                         class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 ring-1 ring-blue-700/10 ring-inset">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -173,9 +173,29 @@ function dragNumberField(event) {
         type: 'number',
         label: 'NumberLabel',
         name: 'fieldName',
-        inputType: 'number'
+        inputType: 'number',
+        required: false,
+        horizontal: false,
+        class: '',
+        prepend: '',
+        append: ''
     }
     event.dataTransfer.setData('application/json', JSON.stringify(numberElement))
+}
+
+function dragDateField(event) {
+    const dateElement = {
+        type: 'date',
+        label: 'dateLabel',
+        name: 'fieldName',
+        inputType: 'date',
+        required: false,
+        horizontal: false,
+        class: '',
+        prepend: '',
+        append: ''
+    }
+    event.dataTransfer.setData('application/json', JSON.stringify(dateElement))
 }
 
 function dragColumnControl(event) {
