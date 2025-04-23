@@ -30,11 +30,12 @@ const store = useBuilderStore()
 const props = defineProps({ element: Object })
 
 function addOption() {
-    if (!store.selectedElement.options) {
-        store.selectedElement.options = []
+    if (!props.element.options) {
+        props.element.options = []
     }
-    store.selectedElement.options.push('option');
+    props.element.options.push({ label: 'Option', value: 'option' })
 }
+
 function removeOption(index) {
     store.selectedElement.options.splice(index, 1)
 }

@@ -40,11 +40,12 @@ const props = defineProps({
 const label = ref('')
 
 function addOption() {
-    if (!store.selectedElement.options) {
-        store.selectedElement.options = []
+    if (!props.element.options) {
+        props.element.options = []
     }
-    store.selectedElement.options.push({ label: 'Option', value: 'option' })
+    props.element.options.push({ label: 'Option', value: 'option' })
 }
+
 
 function removeOption(index) {
     store.selectedElement.options.splice(index, 1)
