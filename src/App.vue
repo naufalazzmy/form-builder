@@ -14,7 +14,12 @@
       <button @click="downloadJson" class="bg-green-600 text-white px-4 py-2 rounded">
         Download JSON
       </button>
+      <button type="button" @click="jsonModal.open()"
+        class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 text-center">Load
+        JSON</button>
     </div>
+
+    <JsonLoaderModal ref="jsonModal" />
 
     <!-- Modal for JSON View -->
     <div v-if="showJson" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -42,9 +47,11 @@ import Sidebar from './components/Sidebar.vue'
 import Canvas from './components/Canvas.vue'
 import PropertyEditor from './components/PropertyEditor.vue'
 import { toast } from 'vue3-toastify'
+import JsonLoaderModal from './components/JsonLoader.vue'
 
 const store = useBuilderStore()
 const showJson = ref(false)
+const jsonModal = ref(null)
 
 function copyJson() {
   const json = JSON.stringify(store.elements, null, 2)
