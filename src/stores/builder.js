@@ -4,7 +4,7 @@ export const useBuilderStore = defineStore("builder", {
   state: () => ({
     elements: [],
     selectedElementId: null,
-    selectedColumnFieldInfo: null, // { colIndex, fieldId }
+    selectedColumnFieldInfo: null, // { colIndex, fieldId, parentId }
   }),
 
   getters: {
@@ -48,7 +48,7 @@ export const useBuilderStore = defineStore("builder", {
 
     selectColumnField(parentId, colIndex, fieldId) {
       this.selectedElementId = parentId;
-      this.selectedColumnFieldInfo = { colIndex, fieldId };
+      this.selectedColumnFieldInfo = { colIndex, fieldId, parentId };
     },
 
     updateSelectedProperty(key, value) {

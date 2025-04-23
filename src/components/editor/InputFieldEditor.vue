@@ -44,7 +44,22 @@ function update(key, value) {
     }
 }
 function remove() {
-    store.deleteSelectedElement();
+    if (store.selectedColumnFieldInfo) {
+
+        // Hapus dari kolom tertentu
+        const { colIndex, fieldId, parentId } = store.selectedColumnFieldInfo
+        const parent = store.elements.find(el => el.id === parentId)
+
+        if (parent && parent.columns?.[colIndex]) {
+            console.log(parent.columns[colIndex]);
+            parent.columns[colIndex] = parent.columns[colIndex].filter(el => el.id !== fieldId)
+
+            store.selectedColumnFieldInfo = null
+        }
+    } else {
+        // Kalau bukan di kolom, hapus langsung dari root
+        store.deleteSelectedElement()
+    }
 }
 
 </script>
