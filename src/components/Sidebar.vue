@@ -229,12 +229,31 @@ function dragRadio(event) {
 }
 
 function dragTextarea(event) {
-    const el = { type: 'textarea', label: 'Textarea Label', name: 'textareaField' }
+    const el = {
+        type: 'textarea',
+        label: 'Textarea Label',
+        name: 'textareaField',
+        required: false,
+        horizontal: false,
+        class: '',
+    }
     event.dataTransfer.setData('application/json', JSON.stringify(el))
 }
 
 function dragCheckbox(event) {
-    const el = { type: 'checkbox', label: 'Checkbox Label', name: 'checkboxField', options: ['Option A', 'Option B'] }
+    const el = {
+        type: 'checkbox',
+        label: 'Checkbox Label',
+        required: false,
+        horizontal: false,
+        class: '',
+        columns: 1,
+        options: [
+            { name: 'name 1', label: 'Option 1', value: 'option1' },
+            { name: 'name 2', label: 'Option 2', value: 'option2' },
+            { name: 'name 3', label: 'Option 3', value: 'option3' }
+        ]
+    }
     event.dataTransfer.setData('application/json', JSON.stringify(el))
 }
 

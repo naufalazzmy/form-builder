@@ -31,10 +31,6 @@
             class="w-full border p-1 mb-4" />
 
         <label class="block text-sm mb-1">Options</label>
-        <!-- <div v-for="(option, index) in element.options" :key="index" class="flex gap-2 items-center mb-1">
-            <input v-model="element.options[index]" class="w-full border p-1" />
-            <button @click="removeOption(index)" class="btn btn-sm btn-error">✕</button>
-        </div> -->
         <div v-for="(opt, idx) in element.options" :key="idx" class="flex items-center gap-2 mb-2">
             <input v-model="opt.label" @input="updateOption(idx, 'label', opt.label)" class="border p-1 w-1/2"
                 placeholder="Label" />
