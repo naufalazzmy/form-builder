@@ -41,6 +41,7 @@ import { useBuilderStore } from '@/stores/builder'
 import Sidebar from './components/Sidebar.vue'
 import Canvas from './components/Canvas.vue'
 import PropertyEditor from './components/PropertyEditor.vue'
+import { toast } from 'vue3-toastify'
 
 const store = useBuilderStore()
 const showJson = ref(false)
@@ -49,11 +50,12 @@ function copyJson() {
   const json = JSON.stringify(store.elements, null, 2)
   navigator.clipboard.writeText(json)
     .then(() => {
-      alert('JSON berhasil disalin ke clipboard!')
+      //alert('JSON berhasil disalin ke clipboard!')
+      toast.info('JSON berhasil disalin ke clipboard!')
     })
     .catch(err => {
       console.error('Gagal menyalin JSON:', err)
-      alert('Gagal menyalin JSON')
+      toast.error('Gagal menyalin JSON')
     })
 }
 
@@ -68,6 +70,8 @@ function downloadJson() {
   link.click()
   document.body.removeChild(link)
   URL.revokeObjectURL(url)  // Membersihkan URL object setelah selesai
+
+  toast.success('JSON berhasil diunduh!')
 }
 
 </script>

@@ -17,6 +17,7 @@ import { computed } from 'vue'
 import Draggable from 'vuedraggable'
 import { useBuilderStore } from '@/stores/builder'
 import CanvasElementRenderer from '@/components/ElementRenderer.vue'
+import { toast } from 'vue3-toastify'
 
 const props = defineProps({
     targetType: { type: String, required: true }, // 'root' or 'column'
@@ -62,7 +63,8 @@ function handleDrop(event) {
     try {
         const data = JSON.parse(event.dataTransfer.getData('application/json'))
         if (props.targetType === 'column' && data.type === 'columnControl') {
-            alert('Column Control tidak boleh berada di dalam kolom.')
+            // alert('Column Control tidak boleh berada di dalam kolom.')
+            toast.error('Column Control tidak boleh berada di dalam kolom.')
             return
         }
         if (props.targetType === 'column') {
