@@ -145,6 +145,9 @@ function dragSelectField(event) {
         type: 'select',
         label: 'Select Label',
         name: 'selectField',
+        required: false,
+        horizontal: false,
+        class: '',
         options: [
             { label: 'Option 1', value: 'option1' },
             { label: 'Option 2', value: 'option2' }
@@ -208,7 +211,20 @@ function dragColumnControl(event) {
 }
 
 function dragRadio(event) {
-    const el = { type: 'radio', label: 'Radio Label', name: 'radioField', options: ['Option 1', 'Option 2'] }
+    const el = {
+        type: 'radio',
+        label: 'Radio Label',
+        name: 'radioField',
+        required: false,
+        horizontal: false,
+        class: '',
+        columns: 1,
+        options: [
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' }
+        ]
+    }
     event.dataTransfer.setData('application/json', JSON.stringify(el))
 }
 

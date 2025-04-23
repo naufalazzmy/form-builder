@@ -15,7 +15,6 @@
                 class="checkbox" />
             Horizontal
         </label>
-
     </div>
 
     <label class="block mb-1">Label</label>
