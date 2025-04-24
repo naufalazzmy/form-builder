@@ -48,6 +48,10 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/SectionEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'subsection') {
+        return defineAsyncComponent(() => import('@/components/editor/SubSectionEditor.vue'))
+    }
+
     if (store.selectedElement?.type === 'text') {
         return defineAsyncComponent(() => import('@/components/editor/TextEditor.vue'))
     }

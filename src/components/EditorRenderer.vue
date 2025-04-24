@@ -14,6 +14,7 @@ import ColumnControl from '@/components/editor/ColumnControlEditor.vue'
 import AnotationEditor from '@/components/editor/AnotationEditor.vue'
 import TitleEditor from '@/components/editor/TitleEditor.vue'
 import SectionEditor from '@/components/editor/SectionEditor.vue'
+import SubSectionEditor from '@/components/editor/SubSectionEditor.vue'
 import TextEditor from '@/components/editor/TextEditor.vue'
 import Image from '@/components/editor/ImageEditor.vue'
 import Divider from '@/components/editor/DividerEditor.vue'
@@ -35,6 +36,7 @@ const componentsMap = {
     anotation: AnotationEditor,
     title: TitleEditor,
     section: SectionEditor,
+    subsection: SubSectionEditor,
     text: TextEditor,
     image: Image,
     divider: Divider,
