@@ -15,7 +15,7 @@
         </div>
         <div class="flex justify-between">
             <small class="text-blue-500">name:[ {{ element.name }} ]</small>
-            <small class="text-stone-900">{{ element.type }}</small>
+            <small class="text-stone-900">{{ element.type }} {{ element.multiple ? 'multiple' : '' }}</small>
             <small class="text-gray-700">classes:{ {{ element.class }} }</small>
         </div>
     </div>

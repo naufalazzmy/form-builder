@@ -17,6 +17,7 @@ import Section from '@/components/elements/SectionElement.vue'
 import Text from '@/components/elements/TextElement.vue'
 import Image from '@/components/elements/ImageElement.vue'
 import Divider from '@/components/elements/DividerElement.vue'
+import Custom from '@/components/elements/CustomElement.vue'
 
 const props = defineProps({
     element: {
@@ -39,7 +40,8 @@ const componentsMap = {
     section: Section,
     text: Text,
     image: Image,
-    divider: Divider
+    divider: Divider,
+    custom: Custom
 }
 
 const resolvedComponent = componentsMap[props.element.type] || null

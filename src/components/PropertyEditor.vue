@@ -60,6 +60,10 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/DividerEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'custom') {
+        return defineAsyncComponent(() => import('@/components/editor/CustomEditor.vue'))
+    }
+
     return null
 })
 </script>

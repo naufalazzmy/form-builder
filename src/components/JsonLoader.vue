@@ -1,34 +1,3 @@
-<!-- <template>
-    <div v-if="show" class="fixed inset-0 bg-gray-900 bg-opacity-100 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-bold mb-4">Load JSON</h2>
-                <button type="button" @click="close"
-                    class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">X</button>
-            </div>
-
-
-
-            <div class="mb-4">
-                <label class="block mb-1 font-medium">Paste JSON</label>
-                <textarea v-model="jsonText" rows="10" class="w-full border p-2 font-mono text-sm" />
-            </div>
-
-            <div class="flex items-center justify-end">
-                <div>
-                   
-                    <button type="button" @click="triggerFile"
-                        class="btn btn-accent text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">📁
-                        Upload File</button>
-                    <button type="button" @click="parseJson"
-                        class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Load</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</template> -->
-
 <template>
     <div v-if="show" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
@@ -49,7 +18,6 @@
                                 class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
                         </div>
                         <div>
-
                             <input ref="fileInput" type="file" accept="application/json" class="hidden"
                                 @change="onFileUpload" />
                             <button type="button" @click="triggerFile"
@@ -72,8 +40,6 @@
                                 </svg>
                                 Load</button>
                         </div>
-
-
                     </div>
                 </div>
             </div>

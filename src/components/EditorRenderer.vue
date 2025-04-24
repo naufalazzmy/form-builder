@@ -17,6 +17,7 @@ import SectionEditor from '@/components/editor/SectionEditor.vue'
 import TextEditor from '@/components/editor/TextEditor.vue'
 import Image from '@/components/editor/ImageEditor.vue'
 import Divider from '@/components/editor/DividerEditor.vue'
+import Custom from '@/components/editor/CustomEditor.vue'
 
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
@@ -36,7 +37,8 @@ const componentsMap = {
     section: SectionEditor,
     text: TextEditor,
     image: Image,
-    divider: Divider
+    divider: Divider,
+    custom: Custom
 }
 
 // Komputasi elemen aktif berdasarkan context
