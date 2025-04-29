@@ -81,5 +81,22 @@ export const useBuilderStore = defineStore("builder", {
         this.selectedColumnFieldInfo = null;
       }
     },
+
+    isNameUnique(name, ignoreId = null) {
+      console.log(name);
+      const checkElements = (list) => {
+        for (const el of list) {
+          if (el.name === name && el.id !== ignoreId) return false;
+          if (el.type === "columnControl") {
+            for (const col of el.columns) {
+              if (!checkElements(col)) return false;
+            }
+          }
+        }
+        return true;
+      };
+
+      return checkElements(this.elements);
+    },
   },
 });

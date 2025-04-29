@@ -37,6 +37,13 @@ const props = defineProps({
 })
 
 function update(key, value) {
+    if (key === 'name') {
+        if (!store.isNameUnique(value, props.element.id)) {
+            props.element.name = ''
+            alert('Name must be unique!')  // Atau pakai toast nanti
+            return;
+        }
+    }
     if (store.selectedColumnFieldInfo) {
         store.updateSelectedColumnFieldProperty(key, value)
     } else {
