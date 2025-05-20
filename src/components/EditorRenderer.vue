@@ -19,6 +19,7 @@ import TextEditor from '@/components/editor/TextEditor.vue'
 import Image from '@/components/editor/ImageEditor.vue'
 import Divider from '@/components/editor/DividerEditor.vue'
 import Custom from '@/components/editor/CustomEditor.vue'
+import Table from '@/components/editor/tableInputEditor.vue'
 
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
@@ -40,7 +41,8 @@ const componentsMap = {
     text: TextEditor,
     image: Image,
     divider: Divider,
-    custom: Custom
+    custom: Custom,
+    table: Table
 }
 
 // Komputasi elemen aktif berdasarkan context

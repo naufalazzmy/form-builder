@@ -83,7 +83,6 @@ export const useBuilderStore = defineStore("builder", {
     },
 
     isNameUnique(name, ignoreId = null) {
-      console.log(name);
       const checkElements = (list) => {
         for (const el of list) {
           if (el.name === name && el.id !== ignoreId) return false;

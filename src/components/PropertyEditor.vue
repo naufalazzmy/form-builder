@@ -68,6 +68,10 @@ const EditorComponent = computed(() => {
         return defineAsyncComponent(() => import('@/components/editor/CustomEditor.vue'))
     }
 
+    if (store.selectedElement?.type === 'table') {
+        return defineAsyncComponent(() => import('@/components/editor/TableInputEditor.vue'))
+    }
+
     return null
 })
 </script>

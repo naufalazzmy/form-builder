@@ -19,6 +19,7 @@ import Text from '@/components/elements/TextElement.vue'
 import Image from '@/components/elements/ImageElement.vue'
 import Divider from '@/components/elements/DividerElement.vue'
 import Custom from '@/components/elements/CustomElement.vue'
+import TableInput from '@/components/elements/TableInput.vue'
 
 const props = defineProps({
     element: {
@@ -43,7 +44,8 @@ const componentsMap = {
     text: Text,
     image: Image,
     divider: Divider,
-    custom: Custom
+    custom: Custom,
+    table: TableInput
 }
 
 const resolvedComponent = componentsMap[props.element.type] || null
